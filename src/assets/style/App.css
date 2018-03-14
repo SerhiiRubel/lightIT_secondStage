@@ -1,0 +1,110 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+  background-color: #eef7ff;
+  display: flex;
+  flex-direction: column; }
+
+.trackList {
+  margin-top: 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center; }
+  .trackList .form {
+    display: flex;
+    height: 40px;
+    width: 250px;
+    margin-bottom: 50px;
+    border: 1px solid #c1c6ca;
+    border-radius: 3px;
+    padding: none; }
+    .trackList .form__input {
+      padding-left: 15px;
+      font-size: 14px;
+      border: none;
+      border-top-left-radius: 3px;
+      border-bottom-left-radius: 3px;
+      height: calc(100% - 2px);
+      width: calc(80% - 1px);
+      outline: none; }
+    .trackList .form__btn {
+      border: none;
+      border-top-right-radius: 3px;
+      border-bottom-right-radius: 3px;
+      margin: 0;
+      padding: 0;
+      width: calc(20% - 1px);
+      height: 100%;
+      outline: none;
+      background: url(../image/searchIcon.png) 50% 50% #f3f3f3 no-repeat;
+      background-size: 50%;
+      cursor: pointer; }
+
+.tracks {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 75%; }
+  .tracks__header {
+    display: flex;
+    padding-left: 160px;
+    padding-right: 10%; }
+    .tracks__header p {
+      word-wrap: break-word;
+      flex: 1;
+      text-align: left; }
+
+.listItem {
+  border-radius: 5px;
+  cursor: pointer;
+  transition: .6s; }
+  .listItem:nth-child(even) {
+    background-color: #ccdff0; }
+
+.accordBtn {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 10px; }
+
+.wrapImg {
+  flex: 1; }
+  .wrapImg img {
+    border: 1px solid blue; }
+
+.trackDescr {
+  display: flex;
+  flex: 8;
+  padding-left: 45px; }
+  .trackDescr p {
+    flex: 1;
+    padding-left: 5px; }
+
+.status {
+  flex: 1; }
+  .status__item {
+    display: block;
+    width: 5px;
+    height: 20px;
+    background-color: black;
+    transition: .5s; }
+    .status__item:first-child {
+      transform: translateY(20px) rotate(90deg); }
+  .status .unActive:last-child {
+    transform: rotate(270deg); }
+
+.accordContent {
+  height: 0;
+  transition: .3s;
+  overflow: hidden;
+  padding-left: 150px;
+  display: flex;
+  flex-wrap: wrap; }
+  .accordContent h3 {
+    width: 100%; }
+  .accordContent p {
+    width: 50%; }
+
+.openAccord {
+  height: 200px; }
