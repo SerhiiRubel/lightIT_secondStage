@@ -15,30 +15,34 @@ export default (props) => {
           <img src={track.artworkUrl100} alt='Collection'/>
         </div>
           <div className='trackDescr'>
-            <p className='trackDescr__artist'>{track.artistName}</p>
-            <p className='trackDescr__track'>{track.trackName}</p>
-            <p className='trackDescr__collectionName'>{track.collectionName}</p>
-            <p className='trackDescr__genre'>{track.primaryGenreName}</p>
+            <p>{track.artistName}</p>
+            <p>{track.trackName}</p>
+            <p>{track.collectionName}</p>
+            <p>{track.primaryGenreName}</p>
           </div>
         <div className='status'>
           <span className='status__item'></span>
-          <span className={`${ currentTrack === id ? 'status__item unActive' : 'status__item' }`}></span>
+          <span className={`status__item ${ currentTrack === id ? 'unActive' : '' }`}></span>
         </div>
       </div>
       { 
-        <div className={`accordContent ${ currentTrack === id ? 'openAccord' : '' } `}>
-          <audio src={track.previewUrl} loop></audio>
-          <h3>{`${track.artistName} - ${track.trackName}`}</h3>
-          <p><b>Collection: </b>{track.collectionName}</p>
-          <p><b>Track Count: </b>{track.trackCount}</p>
-          <p><b>Price: </b>{track.collectionPrice}</p>
-          <p><b>Track Duration: </b>
-            {
-              `${(track.trackTimeMillis/1000/60).toFixed(1)} min`
-            }
-          </p>
-          <p><b>Track Price</b>{track.trackPrice}</p>
-        </div>
+          <div className={`accordContent ${currentTrack === id ? 'openAccord': ''}`}>
+              { currentTrack === id &&
+                <audio src={track.previewUrl} autoPlay loop></audio> 
+              }
+            <div className='accordContent__title'>
+              <span>{`${track.artistName} - ${track.trackName}`}</span>
+            </div>
+            <p><b>Collection: </b>{track.collectionName}</p>
+            <p><b>Track Duration: </b>
+              {
+                `${(track.trackTimeMillis/1000/60).toFixed(1)} min`
+              }
+            </p>
+            <p><b>Track Count: </b>{track.trackCount}</p>
+            <p><b>Track Price: </b>{track.trackPrice} USD</p>
+            <p><b>Price: </b>{track.collectionPrice} USD</p>
+          </div>
       }
     </div>
   );

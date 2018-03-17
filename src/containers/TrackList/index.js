@@ -8,12 +8,12 @@ class TrackList extends Component {
     this.state = ({
       currentTrack: null,
       tracksList: [],
-      group: '',
+      searchValue: '',
     });      
   }
 
   componentWillMount() {
-    fetch('https://itunes.apple.com/search?term=The+Rammstein')
+    fetch('https://itunes.apple.com/search?term=The+Beatles')
       .then( response => response.json() )
       .then( tracksList => {
         this.setState({
@@ -23,29 +23,31 @@ class TrackList extends Component {
   }
 
   changeCurrentTrack = id => {
-    id === this.state.currentTrack ? this.setState({ currentTrack: null }) : this.setState({ currentTrack: id })
+    id === this.state.currentTrack ? 
+      this.setState({ currentTrack: null }) : 
+      this.setState({ currentTrack: id })
   }
 
   handleChange = (e) => {
     this.setState({
-      group: e.target.value,
+      searchValue: e.target.value,
     })
   }
 
-  handleSubmit = (e) => {
+  handleSubmit = (e) => { 
     e.preventDefault();
-    fetch(`https://itunes.apple.com/search?term=${this.state.group}`)
+    fetch(`https://itunes.apple.com/search?term=${ encodeURIComponent(this.state.searchValue).replace(/%20/g, "+") }`)
       .then( response => response.json() )
       .then( tracksList => {
         this.setState({
           tracksList: tracksList.results,
-          group: '',
+          searchValue: '',
+          currentTrack: null,
         })
       } )
   }
 
   render() {
-    console.log(this.state.tracksList);
     return (
       <div className='trackList'>
         <form className='form' onSubmit={this.handleSubmit}>
@@ -54,7 +56,7 @@ class TrackList extends Component {
             className='form__input' 
             type='text' 
             onChange={this.handleChange} 
-            value={this.state.group} 
+            value={this.state.searchValue} 
           />
           <button type='submit' className='form__btn' />
         </form>
@@ -65,20 +67,20 @@ class TrackList extends Component {
             <p>Collection</p>
             <p>Genre</p>
           </div>
-          {
-            this.state.tracksList &&
-            this.state.tracksList.map( (item, index) => {
-              return(
-                <ListItem
-                  id={index} 
-                  key={index}
-                  track={item}
-                  changeCurrentTrack={(id) => this.changeCurrentTrack(id)}
-                  {...this.state}
-                />
-              );
-            })
-          }
+            {
+              this.state.tracksList.length > 0 &&
+              this.state.tracksList.map( (item, index) => {
+                return(
+                  <ListItem
+                    id={index} 
+                    key={index}
+                    track={item}
+                    changeCurrentTrack={(id) => this.changeCurrentTrack(id)}
+                    {...this.state}
+                  />
+                );
+              }) || <h1 align='center'>This music band not found</h1>
+            }
         </div>
       </div>
     );

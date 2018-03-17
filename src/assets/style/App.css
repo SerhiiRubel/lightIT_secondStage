@@ -6,6 +6,12 @@ body {
   display: flex;
   flex-direction: column; }
 
+input, button {
+  border: none;
+  outline: none;
+  margin: 0;
+  padding: 0; }
+
 .trackList {
   margin-top: 100px;
   display: flex;
@@ -17,26 +23,19 @@ body {
     width: 250px;
     margin-bottom: 50px;
     border: 1px solid #c1c6ca;
-    border-radius: 3px;
-    padding: none; }
+    border-radius: 3px; }
     .trackList .form__input {
       padding-left: 15px;
       font-size: 14px;
-      border: none;
       border-top-left-radius: 3px;
       border-bottom-left-radius: 3px;
       height: calc(100% - 2px);
-      width: calc(80% - 1px);
-      outline: none; }
+      width: calc(80% - 1px); }
     .trackList .form__btn {
-      border: none;
       border-top-right-radius: 3px;
       border-bottom-right-radius: 3px;
-      margin: 0;
-      padding: 0;
       width: calc(20% - 1px);
       height: 100%;
-      outline: none;
       background: url(../image/searchIcon.png) 50% 50% #f3f3f3 no-repeat;
       background-size: 50%;
       cursor: pointer; }
@@ -71,6 +70,7 @@ body {
 .wrapImg {
   flex: 1; }
   .wrapImg img {
+    border-radius: 3px;
     border: 1px solid blue; }
 
 .trackDescr {
@@ -82,7 +82,10 @@ body {
     padding-left: 5px; }
 
 .status {
-  flex: 1; }
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center; }
   .status__item {
     display: block;
     width: 5px;
@@ -90,21 +93,42 @@ body {
     background-color: black;
     transition: .5s; }
     .status__item:first-child {
-      transform: translateY(20px) rotate(90deg); }
+      transform: translateX(5px) rotate(90deg); }
   .status .unActive:last-child {
     transform: rotate(270deg); }
 
 .accordContent {
-  height: 0;
-  transition: .3s;
+  height: 0px;
+  transition: .4s;
   overflow: hidden;
   padding-left: 150px;
   display: flex;
+  align-content: center;
   flex-wrap: wrap; }
-  .accordContent h3 {
+  .accordContent__title {
     width: 100%; }
+    .accordContent__title span {
+      position: relative;
+      font-size: 20px;
+      font-weight: 600;
+      line-height: 40px; }
+      .accordContent__title span:after {
+        content: '';
+        display: block;
+        position: absolute;
+        bottom: 0;
+        right: -30px;
+        width: 25px;
+        height: 25px;
+        background: url(../image/musicNote.png) 50% 50% no-repeat;
+        background-size: 25px 25px; }
   .accordContent p {
     width: 50%; }
 
 .openAccord {
-  height: 200px; }
+  padding-bottom: 10px;
+  height: 230px; }
+
+@media (min-width: 1441px) {
+  .tracks__header {
+    padding: 0 11% 0 245px; } }
